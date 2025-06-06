@@ -22,14 +22,16 @@ async function bootstrap() {
 	);
 
 	app.enableCors({
-		methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-		allowedHeaders: [
-			'Content-Type',
-			'Authorization',
-			'X-Requested-With',
-			'Accept',
-			'Origin',
-		],
+		origin: process.env.ORIGIN_URLS
+			? process.env.ORIGIN_URLS.split(',').map((url) => url.trim())
+			: (origin, callback) => {
+					console.log(
+						`🔍 CORS Check: ${origin || 'no-origin'} - ALLOWED (test mode)`,
+					);
+					callback(null, true);
+				},
+		methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+		allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 		credentials: true,
 	});
 	app.use(
