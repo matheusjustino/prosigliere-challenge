@@ -1,0 +1,68 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id       String @id @default(uuid())
+    email    String @unique
+    password String
+
+    blogPosts     BlogPost[]
+    postsComments PostComment[]
+    postsLike     PostLike[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model BlogPost {
+    id      String @id @default(uuid())
+    title   String
+    content String
+
+    ownerId String
+    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+    comments  PostComment[]
+    postLikes PostLike[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("blog_post")
+}
+
+model PostComment {
+    id      String @id @default(uuid())
+    content String
+
+    ownerId    String
+    owner      User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    blogPostId String
+    blogPost   BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("post_comment")
+}
+
+model PostLike {
+    id String @id @default(uuid())
+
+    ownerId    String
+    owner      User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    blogPostId String
+    blogPost   BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([ownerId, blogPostId])
+    @@map("post_like")
+}
