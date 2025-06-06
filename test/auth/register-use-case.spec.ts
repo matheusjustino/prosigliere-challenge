@@ -1,8 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BadRequestException } from '@nestjs/common';
 
+// ENUMS
 import { ConstantsEnum } from '@/common/consts.enum';
+
+// REPOSITORIES
 import { AuthRepository } from '@/modules/auth/auth.repository';
+
+// USE-CASES
 import { CreateUserUseCase } from '@/modules/auth/use-cases/create-user.use-case';
 
 const dataMock = {

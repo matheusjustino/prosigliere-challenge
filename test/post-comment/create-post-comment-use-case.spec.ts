@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+// REPOSITORIES
 import { PostCommentRepository } from '@/modules/post-comment/post-comment.repository';
+
+// USE-CASES
 import { CreatePostCommentUseCase } from '@/modules/post-comment/use-cases/create-post-comment.use-case';
 
 const dataMock = {

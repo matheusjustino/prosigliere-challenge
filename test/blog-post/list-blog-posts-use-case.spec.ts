@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+// REPOSITORIES
 import { BlogPostRepository } from '@/modules/blog-post/blog-post.repository';
+
+// USE-CASES
 import { ListBlogPostsUseCase } from '@/modules/blog-post/use-cases/list-blog-posts.use-case';
 
 const dataMock = {
