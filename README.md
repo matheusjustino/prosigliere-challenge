@@ -47,3 +47,10 @@ uses **`Jest`** for testing and **`Docker`**.
 - run `yarn start:dev`
 - run in docker `docker compose up`
 - test `yarn test`
+
+# Points for improvement
+
+- More tests
+- Add more validations to the resource creation endpoints
+- Add a Continuous Delivery (CD) pipeline
+- Deploy to a cloud provider, such as AWS
