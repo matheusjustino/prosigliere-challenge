@@ -1,0 +1,6 @@
+export enum ConstantsEnum {
+	DATABASE = 'DATABASE',
+	HASH_HELPER = 'HASH_HELPER',
+	JWT_HELPER = 'JWT_HELPER',
+	AUTH_GUARD = 'AUTH_GUARD',
+}
